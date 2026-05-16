@@ -191,14 +191,17 @@ intent2ops-skill/
 |   |-- news-summary/
 |   |   |-- intent.md
 |   |   |-- workflow.yaml
+|   |   |-- output.md
 |   |   `-- result.json
 |   |-- agent-monitoring/
 |   |   |-- intent.md
 |   |   |-- workflow.yaml
+|   |   |-- output.md
 |   |   `-- result.json
 |   `-- meeting-to-actions/
 |       |-- intent.md
 |       |-- workflow.yaml
+|       |-- output.md
 |       `-- result.json
 |-- templates/
 |   |-- intent-template.md
@@ -233,8 +236,9 @@ intent2ops-skill/
 2. `intent.md`에서 사람의 목표와 제약을 확인합니다.
 3. `workflow.yaml`에서 실행 단계와 승인 지점을 확인합니다.
 4. 관련 mock data가 있는지 `mock-data/`에서 확인합니다.
-5. `result.json`을 expected result record로 검토합니다.
-6. `references/validation-checklist.md`로 workflow가 공유 또는 개선 가능한 상태인지 확인합니다.
+5. `output.md`에서 사람이 읽는 실행 결과를 확인합니다.
+6. `result.json`을 machine/AI-friendly result record로 검토합니다.
+7. `references/validation-checklist.md`로 workflow가 공유 또는 개선 가능한 상태인지 확인합니다.
 
 ## 포함된 예시
 

@@ -13,12 +13,14 @@
   "steps_completed": [
     "load-status",
     "classify",
-    "recommend-actions"
+    "recommend-actions",
+    "write-output"
   ],
   "outputs_created": [
     {
       "name": "monitoring_report",
       "type": "markdown",
+      "path": "examples/agent-monitoring/output.md",
       "preview": "One success, one warning, and one failed mock agent identified."
     }
   ],
@@ -38,7 +40,8 @@
     "success_agents": 1,
     "warning_agents": 1,
     "failed_agents": 1,
-    "human_reviews_required": 1
+    "human_reviews_required": 1,
+    "output_files_created": 1
   },
   "next_improvements": [
     "Add severity levels.",

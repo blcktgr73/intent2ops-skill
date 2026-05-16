@@ -13,17 +13,20 @@
   "steps_completed": [
     "load-articles",
     "summarize",
-    "draft-posts"
+    "draft-posts",
+    "write-output"
   ],
   "outputs_created": [
     {
       "name": "article_digest",
       "type": "markdown",
+      "path": "examples/news-summary/output.md",
       "preview": "Three mock articles summarized for a beginner audience."
     },
     {
       "name": "social_post_drafts",
       "type": "markdown",
+      "path": "examples/news-summary/output.md",
       "preview": "Two draft posts created. Publishing requires human approval."
     }
   ],
@@ -41,7 +44,8 @@
   "metrics": {
     "articles_processed": 3,
     "draft_posts_created": 2,
-    "human_reviews_required": 1
+    "human_reviews_required": 1,
+    "output_files_created": 1
   },
   "next_improvements": [
     "Add a style guide for each publishing channel.",
