@@ -26,10 +26,16 @@ workflow:
       input: "three-bullet digest"
       output: "draft social posts"
       requires_approval: false
+    - id: "write-output"
+      name: "Write human-readable output"
+      action: "Render the workflow result as `output.md` for human review."
+      input: "draft social posts"
+      output: "output.md draft"
+      requires_approval: false
     - id: "human-review"
       name: "Review before publishing"
       action: "Ask a human to review accuracy, tone, and publishing destination."
-      input: "draft social posts"
+      input: "output.md draft"
       output: "approved, revised, or rejected drafts"
       requires_approval: true
   approvals:

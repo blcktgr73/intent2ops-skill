@@ -26,10 +26,16 @@ workflow:
       input: "draft action item list"
       output: "review-needed list"
       requires_approval: false
+    - id: "write-output"
+      name: "Write human-readable output"
+      action: "Render the workflow result as `output.md` for human review."
+      input: "review-needed list"
+      output: "output.md draft"
+      requires_approval: false
     - id: "human-review"
       name: "Confirm owners and dates"
       action: "Ask a human to confirm owners, due dates, and any participant message."
-      input: "review-needed list"
+      input: "output.md draft"
       output: "approved action plan"
       requires_approval: true
   approvals:

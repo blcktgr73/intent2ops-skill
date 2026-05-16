@@ -1,6 +1,6 @@
 ---
 name: intent2ops
-description: Use when turning repeated knowledge work into a safe, reusable AI-agent workflow with Markdown intent, YAML steps, mock data, human approval rules, and JSON results.
+description: Use when turning repeated knowledge work into a safe, reusable AI-agent workflow with Markdown intent, YAML steps, mock data, human approval rules, Markdown output, and JSON results.
 ---
 
 # Intent to Operations
@@ -10,7 +10,7 @@ Help the user turn a repeated knowledge-work idea into a small operational workf
 Use this pattern:
 
 ```text
-Markdown intent -> YAML workflow -> JSON result
+Markdown intent -> YAML workflow -> Markdown output -> JSON result
 ```
 
 ## Operating principles
@@ -35,9 +35,10 @@ Guide the user one step at a time.
 5. Create or request mock data.
 6. Draft `intent.md`.
 7. Draft `workflow.yaml`.
-8. Draft `result.json`.
-9. Validate the artifact.
-10. Suggest one small improvement for the next iteration.
+8. Draft `output.md` (the human-readable result).
+9. Draft `result.json`.
+10. Validate the artifact.
+11. Suggest one small improvement for the next iteration.
 
 Do not ask for all details at once. Ask short questions, confirm the answer, then move to the next step.
 
@@ -95,6 +96,18 @@ Each step should include:
 - `requires_approval`
 
 Keep the YAML runtime-independent. Do not assume GitHub Actions, n8n, Airflow, or any one tool.
+
+## Output Markdown guidance
+
+An `output.md` file should contain:
+
+- a short summary a non-developer can read
+- key findings or a small table
+- recommended follow-up actions
+- items that still need human review
+- notes about safety (mock data only, no real action taken)
+
+Keep the output reviewable on its own, without opening the JSON.
 
 ## Result JSON guidance
 

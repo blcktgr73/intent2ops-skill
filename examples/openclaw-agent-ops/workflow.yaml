@@ -32,10 +32,16 @@ workflow:
       input: "agent health summary and security review findings"
       output: "follow-up action plan"
       requires_approval: false
+    - id: "write-output"
+      name: "Write human-readable output"
+      action: "Render the workflow result as `output.md` for human review."
+      input: "follow-up action plan"
+      output: "output.md draft"
+      requires_approval: false
     - id: "human-review"
       name: "Approve operational changes"
       action: "Ask a human to approve any restart, schedule change, external publishing, alert, or credential cleanup."
-      input: "follow-up action plan"
+      input: "output.md draft"
       output: "approved, revised, or rejected operations plan"
       requires_approval: true
   approvals:
