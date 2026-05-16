@@ -1,0 +1,56 @@
+{
+  "workflow_name": "meeting-notes-to-action-items",
+  "status": "completed_with_review_required",
+  "started_at": "2026-05-16T10:20:00+09:00",
+  "completed_at": "2026-05-16T10:24:00+09:00",
+  "inputs_used": [
+    {
+      "name": "meeting_notes",
+      "source": "mock-data/meeting-notes.md",
+      "type": "markdown"
+    }
+  ],
+  "steps_completed": [
+    "load-notes",
+    "extract-actions",
+    "flag-ambiguity"
+  ],
+  "outputs_created": [
+    {
+      "name": "action_items",
+      "type": "markdown",
+      "preview": "Five draft action items created from mock meeting notes."
+    },
+    {
+      "name": "decisions",
+      "type": "markdown",
+      "preview": "Three decisions identified."
+    },
+    {
+      "name": "open_questions",
+      "type": "markdown",
+      "preview": "Two open questions identified."
+    }
+  ],
+  "approval_decisions": [
+    {
+      "step": "human-review",
+      "status": "pending",
+      "reason": "Owners and due dates must be confirmed by a human."
+    }
+  ],
+  "warnings": [
+    "Some action items have no explicit owner.",
+    "No due dates were included in the mock meeting notes."
+  ],
+  "metrics": {
+    "action_items_created": 5,
+    "decisions_found": 3,
+    "open_questions_found": 2,
+    "human_reviews_required": 1
+  },
+  "next_improvements": [
+    "Add a due-date suggestion rule.",
+    "Add a message draft for participant follow-up."
+  ]
+}

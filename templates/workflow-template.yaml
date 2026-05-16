@@ -1,0 +1,40 @@
+workflow:
+  name: "[workflow-name]"
+  purpose: "[Explain the purpose in one sentence.]"
+  runtime: "runtime-independent"
+  inputs:
+    - name: "[input-name]"
+      type: "[markdown|json|csv|text]"
+      source: "[mock-data path or user-provided text]"
+      required: true
+  steps:
+    - id: "step-1"
+      name: "[Step name]"
+      action: "[What the agent should do]"
+      input: "[Input used by this step]"
+      output: "[Output created by this step]"
+      requires_approval: false
+    - id: "step-2"
+      name: "[Review step]"
+      action: "[What the human should review]"
+      input: "[Draft output]"
+      output: "[Approved or revised output]"
+      requires_approval: true
+  approvals:
+    required_before:
+      - "publishing"
+      - "sending messages"
+      - "using external services"
+      - "changing real systems"
+  outputs:
+    - name: "[output-name]"
+      type: "[markdown|json|yaml|text]"
+      destination: "[example output path or chat response]"
+  safety:
+    mock_data_only: true
+    secrets_allowed: false
+    destructive_actions_allowed: false
+  metrics:
+    - "steps_completed"
+    - "warnings_count"
+    - "human_reviews_required"

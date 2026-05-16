@@ -1,0 +1,47 @@
+{
+  "workflow_name": "agent-operation-monitoring-report",
+  "status": "completed_with_review_required",
+  "started_at": "2026-05-16T10:10:00+09:00",
+  "completed_at": "2026-05-16T10:14:00+09:00",
+  "inputs_used": [
+    {
+      "name": "agent_status",
+      "source": "mock-data/agent-status.json",
+      "type": "json"
+    }
+  ],
+  "steps_completed": [
+    "load-status",
+    "classify",
+    "recommend-actions"
+  ],
+  "outputs_created": [
+    {
+      "name": "monitoring_report",
+      "type": "markdown",
+      "preview": "One success, one warning, and one failed mock agent identified."
+    }
+  ],
+  "approval_decisions": [
+    {
+      "step": "human-review",
+      "status": "pending",
+      "reason": "Real alerts or system actions require approval."
+    }
+  ],
+  "warnings": [
+    "agent-review-summarizer had empty review rows.",
+    "agent-meeting-actions failed because the meeting notes file was missing."
+  ],
+  "metrics": {
+    "agents_checked": 3,
+    "success_agents": 1,
+    "warning_agents": 1,
+    "failed_agents": 1,
+    "human_reviews_required": 1
+  },
+  "next_improvements": [
+    "Add severity levels.",
+    "Define owner-specific alert rules."
+  ]
+}

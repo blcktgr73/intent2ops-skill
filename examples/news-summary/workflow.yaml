@@ -1,0 +1,54 @@
+workflow:
+  name: "news-summary-to-social-drafts"
+  purpose: "Turn mock article data into a short digest and draft social posts."
+  runtime: "runtime-independent"
+  inputs:
+    - name: "articles"
+      type: "json"
+      source: "mock-data/articles.json"
+      required: true
+  steps:
+    - id: "load-articles"
+      name: "Load mock articles"
+      action: "Read article titles, sources, dates, summaries, URLs, and tags."
+      input: "articles"
+      output: "normalized article list"
+      requires_approval: false
+    - id: "summarize"
+      name: "Create digest"
+      action: "Write one beginner-friendly sentence for each article."
+      input: "normalized article list"
+      output: "three-bullet digest"
+      requires_approval: false
+    - id: "draft-posts"
+      name: "Draft social posts"
+      action: "Create two short draft posts that cite the mock source names."
+      input: "three-bullet digest"
+      output: "draft social posts"
+      requires_approval: false
+    - id: "human-review"
+      name: "Review before publishing"
+      action: "Ask a human to review accuracy, tone, and publishing destination."
+      input: "draft social posts"
+      output: "approved, revised, or rejected drafts"
+      requires_approval: true
+  approvals:
+    required_before:
+      - "publishing social posts"
+      - "using live article sources"
+      - "calling external APIs"
+  outputs:
+    - name: "article_digest"
+      type: "markdown"
+      destination: "chat response or result record"
+    - name: "social_post_drafts"
+      type: "markdown"
+      destination: "chat response or result record"
+  safety:
+    mock_data_only: true
+    secrets_allowed: false
+    destructive_actions_allowed: false
+  metrics:
+    - "articles_processed"
+    - "draft_posts_created"
+    - "human_reviews_required"

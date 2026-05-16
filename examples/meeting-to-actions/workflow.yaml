@@ -1,0 +1,59 @@
+workflow:
+  name: "meeting-notes-to-action-items"
+  purpose: "Turn mock meeting notes into clear action items, decisions, and open questions."
+  runtime: "runtime-independent"
+  inputs:
+    - name: "meeting_notes"
+      type: "markdown"
+      source: "mock-data/meeting-notes.md"
+      required: true
+  steps:
+    - id: "load-notes"
+      name: "Load meeting notes"
+      action: "Read topic, participants, notes, decisions, and open questions."
+      input: "meeting_notes"
+      output: "structured meeting sections"
+      requires_approval: false
+    - id: "extract-actions"
+      name: "Extract action items"
+      action: "Create short action items from notes and decisions."
+      input: "structured meeting sections"
+      output: "draft action item list"
+      requires_approval: false
+    - id: "flag-ambiguity"
+      name: "Flag missing details"
+      action: "Mark action items that have unclear owners or due dates."
+      input: "draft action item list"
+      output: "review-needed list"
+      requires_approval: false
+    - id: "human-review"
+      name: "Confirm owners and dates"
+      action: "Ask a human to confirm owners, due dates, and any participant message."
+      input: "review-needed list"
+      output: "approved action plan"
+      requires_approval: true
+  approvals:
+    required_before:
+      - "assigning real owners"
+      - "sending participant messages"
+      - "creating calendar events"
+      - "creating real task tickets"
+  outputs:
+    - name: "action_items"
+      type: "markdown"
+      destination: "chat response or result record"
+    - name: "decisions"
+      type: "markdown"
+      destination: "chat response or result record"
+    - name: "open_questions"
+      type: "markdown"
+      destination: "chat response or result record"
+  safety:
+    mock_data_only: true
+    secrets_allowed: false
+    destructive_actions_allowed: false
+  metrics:
+    - "action_items_created"
+    - "decisions_found"
+    - "open_questions_found"
+    - "human_reviews_required"

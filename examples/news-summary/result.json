@@ -1,0 +1,50 @@
+{
+  "workflow_name": "news-summary-to-social-drafts",
+  "status": "completed_with_review_required",
+  "started_at": "2026-05-16T10:00:00+09:00",
+  "completed_at": "2026-05-16T10:05:00+09:00",
+  "inputs_used": [
+    {
+      "name": "articles",
+      "source": "mock-data/articles.json",
+      "type": "json"
+    }
+  ],
+  "steps_completed": [
+    "load-articles",
+    "summarize",
+    "draft-posts"
+  ],
+  "outputs_created": [
+    {
+      "name": "article_digest",
+      "type": "markdown",
+      "preview": "Three mock articles summarized for a beginner audience."
+    },
+    {
+      "name": "social_post_drafts",
+      "type": "markdown",
+      "preview": "Two draft posts created. Publishing requires human approval."
+    }
+  ],
+  "approval_decisions": [
+    {
+      "step": "human-review",
+      "status": "pending",
+      "reason": "Draft posts must be reviewed before publishing."
+    }
+  ],
+  "warnings": [
+    "Article URLs are mock example.com links.",
+    "No live web browsing was performed."
+  ],
+  "metrics": {
+    "articles_processed": 3,
+    "draft_posts_created": 2,
+    "human_reviews_required": 1
+  },
+  "next_improvements": [
+    "Add a style guide for each publishing channel.",
+    "Add a fact-check step before using live article data."
+  ]
+}

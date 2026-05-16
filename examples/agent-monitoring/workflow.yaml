@@ -1,0 +1,53 @@
+workflow:
+  name: "agent-operation-monitoring-report"
+  purpose: "Review mock agent statuses and create a short operations report."
+  runtime: "runtime-independent"
+  inputs:
+    - name: "agent_status"
+      type: "json"
+      source: "mock-data/agent-status.json"
+      required: true
+  steps:
+    - id: "load-status"
+      name: "Load agent status"
+      action: "Read agent status, last run time, duration, output count, and warnings."
+      input: "agent_status"
+      output: "normalized status table"
+      requires_approval: false
+    - id: "classify"
+      name: "Classify agent health"
+      action: "Group agents into success, warning, and failed."
+      input: "normalized status table"
+      output: "health summary"
+      requires_approval: false
+    - id: "recommend-actions"
+      name: "Recommend follow-up"
+      action: "Write plain-language next actions for warning and failed agents."
+      input: "health summary"
+      output: "follow-up action list"
+      requires_approval: false
+    - id: "human-review"
+      name: "Review before alerting"
+      action: "Ask a human to approve any alert or real system action."
+      input: "follow-up action list"
+      output: "approved follow-up plan"
+      requires_approval: true
+  approvals:
+    required_before:
+      - "sending alerts"
+      - "restarting agents"
+      - "changing schedules"
+      - "editing production systems"
+  outputs:
+    - name: "monitoring_report"
+      type: "markdown"
+      destination: "chat response or result record"
+  safety:
+    mock_data_only: true
+    secrets_allowed: false
+    destructive_actions_allowed: false
+  metrics:
+    - "agents_checked"
+    - "warning_agents"
+    - "failed_agents"
+    - "human_reviews_required"

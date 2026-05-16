@@ -1,0 +1,23 @@
+{
+  "workflow_name": "[workflow-name]",
+  "status": "draft",
+  "started_at": null,
+  "completed_at": null,
+  "inputs_used": [
+    {
+      "name": "[input-name]",
+      "source": "[mock-data path]",
+      "type": "[markdown|json|csv|text]"
+    }
+  ],
+  "steps_completed": [],
+  "outputs_created": [],
+  "approval_decisions": [],
+  "warnings": [],
+  "metrics": {
+    "steps_completed": 0,
+    "warnings_count": 0,
+    "human_reviews_required": 0
+  },
+  "next_improvements": []
+}

@@ -1,0 +1,31 @@
+{
+  "agents": [
+    {
+      "id": "agent-news-digest",
+      "owner": "ops-team@example.com",
+      "last_run_at": "2026-05-16T08:30:00+09:00",
+      "status": "success",
+      "duration_seconds": 42,
+      "outputs_created": 3,
+      "warnings": []
+    },
+    {
+      "id": "agent-review-summarizer",
+      "owner": "product-team@example.com",
+      "last_run_at": "2026-05-16T08:45:00+09:00",
+      "status": "warning",
+      "duration_seconds": 91,
+      "outputs_created": 1,
+      "warnings": ["Input contained 2 empty review rows."]
+    },
+    {
+      "id": "agent-meeting-actions",
+      "owner": "education-team@example.com",
+      "last_run_at": "2026-05-16T09:00:00+09:00",
+      "status": "failed",
+      "duration_seconds": 13,
+      "outputs_created": 0,
+      "warnings": ["Meeting notes file was missing."]
+    }
+  ]
+}

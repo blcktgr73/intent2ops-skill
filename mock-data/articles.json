@@ -1,0 +1,31 @@
+{
+  "articles": [
+    {
+      "id": "article-001",
+      "title": "Local Library Starts AI Learning Circle",
+      "source": "Community Tech Weekly",
+      "published_date": "2026-05-10",
+      "summary": "A public library launched a weekly study group to help residents learn practical AI tools through small projects.",
+      "url": "https://example.com/articles/local-library-ai-learning-circle",
+      "tags": ["education", "community", "ai"]
+    },
+    {
+      "id": "article-002",
+      "title": "Small Businesses Test AI for Customer Support Drafts",
+      "source": "Operations Today",
+      "published_date": "2026-05-11",
+      "summary": "Several small businesses are using AI tools to draft support replies, while keeping final approval with human staff.",
+      "url": "https://example.com/articles/small-business-ai-support",
+      "tags": ["operations", "customer-support", "human-review"]
+    },
+    {
+      "id": "article-003",
+      "title": "Educators Share Simple Workflow Templates",
+      "source": "Learning Systems Journal",
+      "published_date": "2026-05-12",
+      "summary": "Teachers are sharing reusable templates for lesson summaries, feedback analysis, and weekly class planning.",
+      "url": "https://example.com/articles/educator-workflow-templates",
+      "tags": ["education", "templates", "workflow"]
+    }
+  ]
+}
