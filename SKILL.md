@@ -1,6 +1,6 @@
 ---
 name: intent2ops
-description: Convert beginner-friendly human intent into a small, safe, runtime-independent agent workflow. Use when a user wants to turn repeated knowledge work into a Codex Skillathon-style artifact with Markdown intent, YAML workflow steps, JSON execution results, mock data, human approval rules, and a validation checklist. Best for non-developers, operators, educators, product managers, and AI beginners who need a reusable workflow design before using real tools or private data.
+description: Use when turning repeated knowledge work into a safe, reusable AI-agent workflow with Markdown intent, YAML steps, mock data, human approval rules, and JSON results.
 ---
 
 # Intent to Operations
@@ -50,6 +50,7 @@ README.md
 SKILL.md
 templates/intent-template.md
 templates/workflow-template.yaml
+templates/output-template.md
 templates/result-template.json
 mock-data/
 examples/
