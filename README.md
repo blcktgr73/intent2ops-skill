@@ -242,6 +242,18 @@ intent2ops-skill/
 - `examples/openclaw-agent-ops`: mock OpenClaw agent 상태, 보안, 권한을 운영 검토 workflow로 정리하는 예시
 - `examples/meeting-to-actions`: mock 회의록을 결정 사항과 액션 아이템으로 바꾸는 예시
 
+## 1분 데모: OpenClaw agent 운영 점검
+
+심사위원이나 처음 보는 사용자는 아래 순서로 보면 이 저장소의 핵심 흐름을 빠르게 확인할 수 있습니다.
+
+1. `mock-data/openclaw-agent-ops.json`에서 agent 상태, 실패 횟수, 권한, network access, secret marker를 확인합니다.
+2. `examples/openclaw-agent-ops/intent.md`에서 사람이 원하는 운영 목표와 안전 제약을 확인합니다.
+3. `examples/openclaw-agent-ops/workflow.yaml`에서 상태 점검, 보안 검토, 후속 조치, human approval 단계가 어떻게 자동화 절차로 바뀌는지 확인합니다.
+4. `examples/openclaw-agent-ops/output.md`에서 사람이 읽는 운영 보고서를 확인합니다.
+5. `examples/openclaw-agent-ops/result.json`에서 AI/tool이 재사용할 수 있는 실행 기록, 지표, 승인 대기 항목을 확인합니다.
+
+이 데모는 실제 OpenClaw 환경에 연결하지 않습니다. mock data만 사용해 “의도 -> workflow -> 사람이 읽는 결과 -> machine/AI-friendly 결과” 흐름을 보여줍니다.
+
 ## 검증 방법
 
 로컬에서 다음 명령으로 기본 검증을 실행할 수 있습니다.
@@ -270,6 +282,12 @@ python scripts/quick_validate.py
 ## 검증 결과
 
 Windows PowerShell, Python 3.14.3, PyYAML 6.0.3 환경에서 확인했습니다.
+
+재현 명령:
+
+```powershell
+python scripts/quick_validate.py
+```
 
 - `python scripts/quick_validate.py`: 통과
 - Codex skill `quick_validate.py`: 통과
