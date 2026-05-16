@@ -53,8 +53,8 @@ templates/workflow-template.yaml
 templates/result-template.json
 mock-data/
 examples/
-docs/validation-checklist.md
-docs/design-notes.md
+references/validation-checklist.md
+references/design-notes.md
 ```
 
 ## Intent Markdown guidance
@@ -144,4 +144,4 @@ Before finishing, check:
 - No secrets or private data are present.
 - The artifact is useful without running code.
 
-Use `docs/validation-checklist.md` when present.
+Use `references/validation-checklist.md` when present.
