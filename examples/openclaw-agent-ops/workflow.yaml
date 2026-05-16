@@ -1,0 +1,69 @@
+workflow:
+  name: "openclaw-agent-operations-review"
+  purpose: "Review mock OpenClaw agent status, security posture, permissions, and approval needs."
+  runtime: "runtime-independent"
+  inputs:
+    - name: "openclaw_agent_ops"
+      type: "json"
+      source: "mock-data/openclaw-agent-ops.json"
+      required: true
+  steps:
+    - id: "load-snapshot"
+      name: "Load OpenClaw agent snapshot"
+      action: "Read mock agent status, run history, permissions, tool access, security flags, and policy rules."
+      input: "openclaw_agent_ops"
+      output: "normalized agent inventory"
+      requires_approval: false
+    - id: "classify-health"
+      name: "Classify operational health"
+      action: "Group agents by healthy, warning, review_required, and blocked status using failure count and duration policy."
+      input: "normalized agent inventory"
+      output: "agent health summary"
+      requires_approval: false
+    - id: "review-security"
+      name: "Review security posture"
+      action: "Flag network access, secret markers, external write permissions, restart permissions, and missing approval gates."
+      input: "normalized agent inventory"
+      output: "security review findings"
+      requires_approval: false
+    - id: "recommend-actions"
+      name: "Recommend follow-up actions"
+      action: "Write plain-language follow-up actions for warning, review-required, and blocked agents."
+      input: "agent health summary and security review findings"
+      output: "follow-up action plan"
+      requires_approval: false
+    - id: "human-review"
+      name: "Approve operational changes"
+      action: "Ask a human to approve any restart, schedule change, external publishing, alert, or credential cleanup."
+      input: "follow-up action plan"
+      output: "approved, revised, or rejected operations plan"
+      requires_approval: true
+  approvals:
+    required_before:
+      - "restarting agents"
+      - "changing schedules"
+      - "publishing reports"
+      - "sending alerts"
+      - "rotating or editing credentials"
+      - "enabling network access"
+      - "granting external write permission"
+  outputs:
+    - name: "operations_review"
+      type: "markdown"
+      destination: "examples/openclaw-agent-ops/output.md"
+    - name: "execution_record"
+      type: "json"
+      destination: "examples/openclaw-agent-ops/result.json"
+  safety:
+    mock_data_only: true
+    secrets_allowed: false
+    destructive_actions_allowed: false
+    real_openclaw_connection_allowed: false
+  metrics:
+    - "agents_checked"
+    - "healthy_agents"
+    - "warning_agents"
+    - "review_required_agents"
+    - "blocked_agents"
+    - "security_findings"
+    - "human_reviews_required"

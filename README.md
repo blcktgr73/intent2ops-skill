@@ -198,6 +198,11 @@ intent2ops-skill/
 |   |   |-- workflow.yaml
 |   |   |-- output.md
 |   |   `-- result.json
+|   |-- openclaw-agent-ops/
+|   |   |-- intent.md
+|   |   |-- workflow.yaml
+|   |   |-- output.md
+|   |   `-- result.json
 |   `-- meeting-to-actions/
 |       |-- intent.md
 |       |-- workflow.yaml
@@ -210,6 +215,7 @@ intent2ops-skill/
 |-- mock-data/
 |   |-- articles.json
 |   |-- agent-status.json
+|   |-- openclaw-agent-ops.json
 |   `-- meeting-notes.md
 `-- references/
     |-- validation-checklist.md
@@ -244,6 +250,7 @@ intent2ops-skill/
 
 - `examples/news-summary`: mock articles를 요약하고 SNS 게시글 초안을 만드는 예시
 - `examples/agent-monitoring`: mock AI agent 상태를 운영 보고서로 정리하는 예시
+- `examples/openclaw-agent-ops`: mock OpenClaw agent 상태, 보안, 권한을 운영 검토 workflow로 정리하는 예시
 - `examples/meeting-to-actions`: mock 회의록을 결정 사항과 액션 아이템으로 바꾸는 예시
 
 ## 안전 규칙

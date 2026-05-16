@@ -1,0 +1,74 @@
+{
+  "snapshot_at": "2026-05-16T11:30:00+09:00",
+  "environment": "mock-openclaw-lab",
+  "agents": [
+    {
+      "id": "openclaw-news-curator",
+      "owner": "content-ops@example.com",
+      "status": "healthy",
+      "last_run_at": "2026-05-16T10:45:00+09:00",
+      "last_success_at": "2026-05-16T10:45:00+09:00",
+      "failure_count_24h": 0,
+      "avg_duration_seconds": 38,
+      "enabled_tools": ["read_mock_articles", "draft_markdown"],
+      "permissions": ["read:mock-data", "write:draft-output"],
+      "network_access": false,
+      "secrets_present": false,
+      "human_approval_required": ["publish_social_post"],
+      "warnings": []
+    },
+    {
+      "id": "openclaw-ticket-triage",
+      "owner": "support-ops@example.com",
+      "status": "warning",
+      "last_run_at": "2026-05-16T10:50:00+09:00",
+      "last_success_at": "2026-05-16T09:50:00+09:00",
+      "failure_count_24h": 2,
+      "avg_duration_seconds": 126,
+      "enabled_tools": ["read_mock_tickets", "classify_ticket", "draft_reply"],
+      "permissions": ["read:mock-data", "write:draft-output"],
+      "network_access": false,
+      "secrets_present": false,
+      "human_approval_required": ["send_customer_reply"],
+      "warnings": ["Two runs exceeded the 120 second duration threshold."]
+    },
+    {
+      "id": "openclaw-admin-maintenance",
+      "owner": "platform-ops@example.com",
+      "status": "review_required",
+      "last_run_at": "2026-05-16T10:55:00+09:00",
+      "last_success_at": "2026-05-15T18:20:00+09:00",
+      "failure_count_24h": 1,
+      "avg_duration_seconds": 74,
+      "enabled_tools": ["read_config", "update_schedule", "restart_agent"],
+      "permissions": ["read:config", "write:schedule", "execute:restart"],
+      "network_access": true,
+      "secrets_present": false,
+      "human_approval_required": ["update_schedule", "restart_agent"],
+      "warnings": ["Agent has network access.", "Agent can restart other agents."]
+    },
+    {
+      "id": "openclaw-report-publisher",
+      "owner": "business-ops@example.com",
+      "status": "blocked",
+      "last_run_at": "2026-05-16T11:00:00+09:00",
+      "last_success_at": null,
+      "failure_count_24h": 3,
+      "avg_duration_seconds": 18,
+      "enabled_tools": ["read_mock_report", "publish_report"],
+      "permissions": ["read:mock-data", "write:external-channel"],
+      "network_access": true,
+      "secrets_present": true,
+      "human_approval_required": ["publish_report", "rotate_secret"],
+      "warnings": ["Mock secret marker detected.", "Publishing permission requires review."]
+    }
+  ],
+  "policy": {
+    "max_failure_count_24h": 2,
+    "max_avg_duration_seconds": 120,
+    "network_access_requires_review": true,
+    "secrets_present_blocks_execution": true,
+    "external_write_requires_human_approval": true,
+    "restart_permission_requires_human_approval": true
+  }
+}

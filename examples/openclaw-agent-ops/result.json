@@ -1,0 +1,56 @@
+{
+  "workflow_name": "openclaw-agent-operations-review",
+  "status": "completed_with_review_required",
+  "started_at": "2026-05-16T11:35:00+09:00",
+  "completed_at": "2026-05-16T11:42:00+09:00",
+  "inputs_used": [
+    {
+      "name": "openclaw_agent_ops",
+      "source": "mock-data/openclaw-agent-ops.json",
+      "type": "json"
+    }
+  ],
+  "steps_completed": [
+    "load-snapshot",
+    "classify-health",
+    "review-security",
+    "recommend-actions",
+    "write-output"
+  ],
+  "outputs_created": [
+    {
+      "name": "operations_review",
+      "type": "markdown",
+      "path": "examples/openclaw-agent-ops/output.md",
+      "preview": "Four mock OpenClaw agents reviewed for status, security posture, risky permissions, and approval requirements."
+    }
+  ],
+  "approval_decisions": [
+    {
+      "step": "human-review",
+      "status": "pending",
+      "reason": "Restart, publishing, network access, external write, and credential cleanup decisions require human approval."
+    }
+  ],
+  "warnings": [
+    "openclaw-ticket-triage exceeded the average duration threshold.",
+    "openclaw-admin-maintenance has network access and restart permission.",
+    "openclaw-report-publisher has external write permission and a mock secret marker."
+  ],
+  "metrics": {
+    "agents_checked": 4,
+    "healthy_agents": 1,
+    "warning_agents": 1,
+    "review_required_agents": 1,
+    "blocked_agents": 1,
+    "security_findings": 4,
+    "human_reviews_required": 5,
+    "output_files_created": 1
+  },
+  "next_improvements": [
+    "Add severity levels for each security finding.",
+    "Add owner-specific escalation rules.",
+    "Define what evidence is needed before unblocking an agent.",
+    "Create a runtime adapter only after the mock review flow is approved."
+  ]
+}
